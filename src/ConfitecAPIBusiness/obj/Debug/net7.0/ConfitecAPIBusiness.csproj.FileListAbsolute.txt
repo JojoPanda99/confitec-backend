@@ -1,0 +1,12 @@
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/bin/Debug/net7.0/ConfitecAPIBusiness.deps.json
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/bin/Debug/net7.0/ConfitecAPIBusiness.dll
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/bin/Debug/net7.0/ConfitecAPIBusiness.pdb
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.csproj.AssemblyReference.cache
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.GeneratedMSBuildEditorConfig.editorconfig
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.AssemblyInfoInputs.cache
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.AssemblyInfo.cs
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.csproj.CoreCompileInputs.cache
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.dll
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/refint/ConfitecAPIBusiness.dll
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ConfitecAPIBusiness.pdb
+/home/jojo/dotnet-projects/confitec-fullstack-teste-tecnico/backend/ConfitecAPIBackend/src/ConfitecAPIBusiness/obj/Debug/net7.0/ref/ConfitecAPIBusiness.dll

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VASRCQYzAtMQCPByFjAdw8XMfAXcljXj1MiCmrZzD0kAIKKBP+neoskBO6fHx2cexnefL85SIdiHL12BibHE3w==",
+  "success": true,
+  "projectFilePath": "/home/jojo/dotnet-projects/confitec-backend/src/ConfitecAPIBusiness/ConfitecAPIBusiness.csproj",
+  "expectedPackageFiles": [
+    "/home/jojo/.nuget/packages/fluentvalidation/11.8.0/fluentvalidation.11.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}
