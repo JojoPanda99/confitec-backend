@@ -21,27 +21,23 @@ public class UserController : BaseController
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll()
     {
         var users = await _userApplicationService.ListAllAsync();
-        return Ok(users);
+        return CustomResponse(users);
     }
 
 
     [HttpGet("{id:int}")]
-    [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ModelStateDictionary), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(UserByIdDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(int id)
     {
-        var users = await _userService.ListByIdAsync(id);
-
-        if (users == null)
-        {
-            return NotFound();
-        }
-
-        return CustomResponse(users);
+        var users = await _userApplicationService.ListByIdAsync(id);
+        if (users != null)
+            return CustomResponse(users);
+        return CustomResponse();
     }
 
     [HttpPost]

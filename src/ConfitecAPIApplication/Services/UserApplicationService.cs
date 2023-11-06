@@ -27,14 +27,14 @@ public class UserApplicationService : IUserApplicationService
         throw new NotImplementedException();
     }
 
-    public Task<UserByIdDTO?> ListByIdAsync(int id)
+    public async Task<UserByIdDTO?> ListByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var user = await _userService.ListByIdAsync(id);
+        return _mapper.Map<UserByIdDTO>(user);
     }
 
     public async Task<IEnumerable<UserDTO>> ListAllAsync()
     {
-
         var users = await _userService.ListAllAsync();
         return _mapper.Map<IEnumerable<UserDTO>>(users);
     }

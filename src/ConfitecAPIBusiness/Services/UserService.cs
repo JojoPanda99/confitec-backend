@@ -35,7 +35,7 @@ public class UserService : BaseService, IUserService
 
     public async Task<User?> ListByIdAsync(int id)
     {
-        if (!await _userRepository.ExistsAnyByIdAsync(id))
+        if (!await NotifyIfUserNotExists(id))
             return null;
 
         var user = await _userRepository.FindByIdAsync(id);
