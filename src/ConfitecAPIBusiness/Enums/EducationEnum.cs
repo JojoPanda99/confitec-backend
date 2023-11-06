@@ -1,6 +1,6 @@
 namespace ConfitecAPIBusiness.Models;
 
-public enum Education
+public enum EducationEnum
 {
     PRE_SCHOOL,
     ELEMENTARY_SCHOOL,

@@ -6,5 +6,5 @@ public class User : BaseEntity
     public string Surname { get; set; }
     public string Email { get; set; }
     public DateTime BirthDate { get; set; }
-    public Education Education { get; set; }
+    public EducationEnum Education { get; set; }
 }

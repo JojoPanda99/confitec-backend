@@ -1,4 +1,3 @@
-using ConfitecAPIBusiness.DTO;
 using ConfitecAPIBusiness.Interfaces;
 using ConfitecAPIBusiness.Interfaces.Repositories;
 using ConfitecAPIBusiness.Interfaces.Services;
@@ -17,36 +16,21 @@ public class UserService : BaseService, IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<User> CreateAsync(UserCreateDTO payload)
+    public async Task<User> CreateAsync(User user)
     {
-        var user = new User
-        {
-            Name = payload.Name,
-            Surname = payload.Surname,
-            Email = payload.Email,
-            Education = payload.Education,
-            BirthDate = payload.BirthDate
-        };
+        if (!await UserIsValid(user))
+            return null;
         await _userRepository.CreateAsync(user);
         return user;
     }
 
-    public async Task UpdateAsync(int id, UserUpdateDTO payload)
+    public async Task UpdateAsync(User user)
     {
-        if (!await _userRepository.ExistsAnyByIdAsync(id))
+        if (!await _userRepository.ExistsAnyByIdAsync(user.Id))
         {
         }
 
-        var userToPatch = new User
-        {
-            Id = id,
-            Name = payload.Name,
-            Surname = payload.Surname,
-            Email = payload.Email,
-            BirthDate = payload.BirthDate,
-            Education = payload.Education
-        };
-        await _userRepository.UpdateAsync(userToPatch);
+        await _userRepository.UpdateAsync(user);
     }
 
     public async Task<User?> ListByIdAsync(int id)
