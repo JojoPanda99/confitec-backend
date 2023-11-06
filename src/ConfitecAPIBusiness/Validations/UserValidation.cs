@@ -33,6 +33,9 @@ public class UserValidation : AbstractValidator<User>
             .LessThan(DateTime.Now)
             .WithMessage("BirthDate must be less than today");
         RuleFor(u => u.Education)
-            .SetValidator(new EducationEnumValidation());
+            .NotNull()
+            .WithMessage("Education is required")
+            .IsInEnum()
+            .WithMessage("Education is invalid");
     }
 }
