@@ -9,4 +9,5 @@ public interface IUserService : IDisposable
     Task<User?> ListByIdAsync(int id);
     Task<IEnumerable<User>> ListAllAsync();
     Task DeleteAsync(int id);
+    Task<bool> NotifyIfUserNotExists(int id);
 }

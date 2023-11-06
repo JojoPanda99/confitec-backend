@@ -26,11 +26,18 @@ public class UserService : BaseService, IUserService
 
     public async Task UpdateAsync(User user)
     {
-        if (!await _userRepository.ExistsAnyByIdAsync(user.Id))
-        {
-        }
+        if (!await UserIsValid(user)) return;
+        if (!await NotifyIfUserNotExists(user.Id)) return;
 
-        await _userRepository.UpdateAsync(user);
+        var userDb = await ListByIdAsync(user.Id);
+
+        userDb!.Name = user.Name;
+        userDb.Surname = user.Surname;
+        userDb.BirthDate = user.BirthDate;
+        userDb.Email = user.Email;
+        userDb.Education = user.Education;
+
+        await _userRepository.UpdateAsync(userDb);
     }
 
     public async Task<User?> ListByIdAsync(int id)
@@ -59,7 +66,7 @@ public class UserService : BaseService, IUserService
         return await ValidateAsync(user, new UserValidation());
     }
 
-    private async Task<bool> NotifyIfUserNotExists(int id)
+    public async Task<bool> NotifyIfUserNotExists(int id)
     {
         var userExists = await _userRepository.ExistsAnyByIdAsync(id);
         if (!userExists)

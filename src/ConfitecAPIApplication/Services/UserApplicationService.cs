@@ -27,7 +27,9 @@ public class UserApplicationService : IUserApplicationService
     public async Task<CreateUserResponseDTO> CreateAsync(CreateUserRequestDTO userDto)
     {
         var user = _mapper.Map<User>(userDto);
+
         var userDb = await _userService.CreateAsync(user);
+
         if (userDb != null)
             return _mapper.Map<CreateUserResponseDTO>(userDb);
 
@@ -35,9 +37,13 @@ public class UserApplicationService : IUserApplicationService
         return null;
     }
 
-    public Task UpdateAsync(User user)
+    public async Task UpdateAsync(UpdateUserDTO userDto)
     {
-        throw new NotImplementedException();
+        if (!await _userService.NotifyIfUserNotExists((int)userDto.Id!))
+            return;
+        var user = _mapper.Map<User>(userDto);
+
+        await _userService.UpdateAsync(user);
     }
 
     public async Task<UserByIdDTO?> ListByIdAsync(int id)

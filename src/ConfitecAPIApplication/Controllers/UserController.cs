@@ -30,7 +30,7 @@ public class UserController : BaseController
 
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(UserByIdDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(int id)
     {
         var users = await _userApplicationService.ListByIdAsync(id);
@@ -41,7 +41,7 @@ public class UserController : BaseController
 
     [HttpPost]
     [ProducesResponseType(typeof(CreateUserResponseDTO), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync(CreateUserRequestDTO userRequestDto)
     {
         if (!ModelState.IsValid)
@@ -55,13 +55,16 @@ public class UserController : BaseController
         return CustomResponse();
     }
 
-    [HttpPatch("{id}")]
-    public async Task<IActionResult> Update(int id, UserUpdateDTO userRequest)
+    [HttpPut("{id:int}")]
+    [ProducesResponseType(typeof(UpdateUserDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(int id, UpdateUserDTO userRequest)
     {
         if (!ModelState.IsValid)
             return CustomResponse(ModelState);
-
-        //await _userService.UpdateAsync(userRequest);
+        userRequest.Id = id;
+        await _userApplicationService.UpdateAsync(userRequest);
 
         return CustomResponse();
     }
