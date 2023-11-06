@@ -1,3 +1,5 @@
+using ConfitecAPIApplication.Interfaces;
+using ConfitecAPIApplication.Services;
 using ConfitecAPIBusiness.Interfaces;
 using ConfitecAPIBusiness.Interfaces.Repositories;
 using ConfitecAPIBusiness.Interfaces.Services;
@@ -14,8 +16,8 @@ public static class DependencyInjectionConfiguration
         //Repositories
         services.AddScoped<IUserRepository, UserRepository>();
         //Services
+        services.AddScoped<IUserApplicationService, UserApplicationService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<INotificationHandler, NotificationHandler>();
-        //
     }
 }
