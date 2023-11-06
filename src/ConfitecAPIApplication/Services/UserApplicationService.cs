@@ -58,9 +58,11 @@ public class UserApplicationService : IUserApplicationService
         return _mapper.Map<IEnumerable<UserDTO>>(users);
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        if (!await _userService.NotifyIfUserNotExists(id)) return;
+
+        await _userService.DeleteAsync(id);
     }
 
     private void AddNotification(string message)
