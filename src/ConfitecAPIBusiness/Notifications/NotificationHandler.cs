@@ -6,9 +6,9 @@ public class NotificationHandler : INotificationHandler
 {
     private readonly List<Notification> _notifications;
 
-    public NotificationHandler(List<Notification> notifications)
+    public NotificationHandler()
     {
-        _notifications = notifications;
+        _notifications = new List<Notification>();
     }
 
     public void Handler(Notification notification)
