@@ -1,25 +1,38 @@
 using AutoMapper;
+using ConfitecAPIApplication.DTOs.User;
 using ConfitecAPIApplication.Interfaces;
 using ConfitecAPIBusiness.DTO;
+using ConfitecAPIBusiness.Interfaces;
 using ConfitecAPIBusiness.Interfaces.Services;
 using ConfitecAPIBusiness.Models;
+using ConfitecAPIBusiness.Notifications;
 
 namespace ConfitecAPIApplication.Services;
 
 public class UserApplicationService : IUserApplicationService
 {
     private readonly IUserService _userService;
+    private readonly INotificationHandler _notificationHandler;
     private readonly IMapper _mapper;
 
-    public UserApplicationService(IUserService userService, IMapper mapper)
+    public UserApplicationService(IUserService userService,
+        IMapper mapper,
+        INotificationHandler notificationHandler)
     {
         _userService = userService;
         _mapper = mapper;
+        _notificationHandler = notificationHandler;
     }
 
-    public Task<User> CreateAsync(User user)
+    public async Task<CreateUserResponseDTO> CreateAsync(CreateUserRequestDTO userDto)
     {
-        throw new NotImplementedException();
+        var user = _mapper.Map<User>(userDto);
+        var userDb = await _userService.CreateAsync(user);
+        if (userDb != null)
+            return _mapper.Map<CreateUserResponseDTO>(userDb);
+
+        AddNotification("An error occurred while creating the user.");
+        return null;
     }
 
     public Task UpdateAsync(User user)
@@ -42,6 +55,11 @@ public class UserApplicationService : IUserApplicationService
     public Task DeleteAsync(int id)
     {
         throw new NotImplementedException();
+    }
+
+    private void AddNotification(string message)
+    {
+        _notificationHandler.Handler(new Notification(message));
     }
 
     public void Dispose()

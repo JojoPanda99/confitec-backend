@@ -1,10 +1,9 @@
+using ConfitecAPIApplication.DTOs.User;
 using ConfitecAPIApplication.Interfaces;
 using ConfitecAPIBusiness.DTO;
 using ConfitecAPIBusiness.Interfaces;
 using ConfitecAPIBusiness.Interfaces.Services;
-using ConfitecAPIBusiness.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ConfitecAPIApplication.Controllers;
 
@@ -31,7 +30,7 @@ public class UserController : BaseController
 
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(UserByIdDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(int id)
     {
         var users = await _userApplicationService.ListByIdAsync(id);
@@ -41,16 +40,19 @@ public class UserController : BaseController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(UserCreateDTO userRequest)
+    [ProducesResponseType(typeof(CreateUserResponseDTO), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CreateAsync(CreateUserRequestDTO userRequestDto)
     {
         if (!ModelState.IsValid)
             return CustomResponse(ModelState);
 
-        //var user = await _userService.CreateAsync(userRequest);
-        //if (user == null)
-        //    CustomResponse();
+        var user = await _userApplicationService.CreateAsync(userRequestDto);
 
-        return CreatedAtAction(nameof(GetById), userRequest);
+        if (user != null)
+            return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
+
+        return CustomResponse();
     }
 
     [HttpPatch("{id}")]
