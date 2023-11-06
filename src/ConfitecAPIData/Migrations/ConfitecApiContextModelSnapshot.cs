@@ -38,22 +38,19 @@ namespace ConfitecAPIData.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Usuarios", (string)null);
                 });
 #pragma warning restore 612, 618
         }
